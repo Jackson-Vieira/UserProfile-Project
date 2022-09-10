@@ -1,0 +1,28 @@
+{% load bootstrap5 %}
+{% bootstrap_css %} 
+{% bootstrap_javascript %}
+
+<div class="container mt-5">
+    <h2>Profiles</h2>
+    <div>
+        <a href="{% url 'users:register' %}">Add a User</a>
+    </div>
+    <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Profile link</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{user.username}}</td>
+            <td><a href="{% url 'users:user' user.id %}">here</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
