@@ -16,12 +16,17 @@
 <body>
     <nav class="container-fluid navbar navbar-dark bg-dark mb-5">
         <div class="navbar-brand">
-            <img src="{% static 'imgs/user.png' %}"  height="30" class="d-inline align-top" alt="">
-            Navbar
-            {% if user.is_authenticated %}
-            User: {{user.username}}
-            <a href="{% url 'users:logout' %}">logout</a>
-            {% endif %}
+            <a href="{% url 'users:index' %}" style="text-decoration: none; color: whitesmoke;">
+                <img src="{% static 'imgs/user.png' %}"  height="30" class="d-inline align-top" alt="">
+                User Profile
+            </a>
+            
+        </div>
+        <div class="justify-content-end">
+        {% if user.is_authenticated %}
+            <span class="text-ligth">User: {{user.username}}</span>
+            <a href="{% url 'users:logout' %}" class="text-ligth">logout</a>
+        {% endif %}
         </div>
         
     </nav>

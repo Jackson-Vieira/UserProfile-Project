@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login, authenticate, logout
 
-from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index(request):
@@ -35,9 +35,12 @@ def register(request):
 
         if form.is_valid():
             form.save()
+
+            if request.user.is_anonymous == False:
+                logout(request)
+
             username, password = request.POST['username'], request.POST['password1']
             user = authenticate(request, username=username, password=password)
-            
             login(request, user=user)
             return HttpResponseRedirect(reverse('users:user', args=[user.id,]))
 

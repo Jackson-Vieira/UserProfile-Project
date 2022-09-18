@@ -1,12 +1,8 @@
-{% load bootstrap5 %}
-{% bootstrap_css %} 
-{% bootstrap_javascript %}
+{% extends 'users/base.html' %}
 
-<div class="container mt-5">
+{% block content %} 
+<div class="mt-5">
     <h2>Profiles</h2>
-    <div>
-        <a href="{% url 'users:register' %}">Add a User</a>
-    </div>
     <table class="table table-bordered table-dark">
         <thead>
           <tr>
@@ -26,3 +22,4 @@
         </tbody>
       </table>
 </div>
+{% endblock content %}

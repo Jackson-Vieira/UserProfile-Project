@@ -1,0 +1,51 @@
+{% load bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileUser App</title>
+
+    {% bootstrap_css %} 
+    {% bootstrap_javascript %}
+
+</head>
+<body>
+    <nav class="container navbar navbar-expand-lg">
+        <a href="{% url 'users:index' %}" style="text-decoration: none;"><span class="navbar-brand text-dark" >User Profile</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" justify-content-end collapse navbar-collapse " id="navbarNav">
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item " >
+              <a class="nav-link text-dark" href="{% url 'users:user' user.id %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'users:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'users:login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'users:register' %}">Register</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+      <main>
+        <div class="container">
+            {% block header %} {% endblock header%}
+        </div>
+        <div class="container">
+            {% block content %} {% endblock content %}
+        </div>
+      </main>
+      
+</body>
+</html>

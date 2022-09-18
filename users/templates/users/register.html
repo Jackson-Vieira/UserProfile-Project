@@ -1,7 +1,13 @@
+{% extends 'users/base.html' %}
+
+{# Load the tag library #}
 {% load bootstrap5 %}
-{% bootstrap_css %} 
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
 {% bootstrap_javascript %}
 
+{% block content %}
 <div class="container mt-5 w-50">
     <h2>Register</h2>
 
@@ -11,3 +17,4 @@
         <input class="btn btn-primary"type="submit">
     </form>
 </div>
+{% endblock content %}

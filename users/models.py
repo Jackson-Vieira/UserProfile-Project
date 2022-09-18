@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# Create your models here.
+
+
 import uuid
 
 LOCATION_CHOICES = [
@@ -8,10 +9,11 @@ LOCATION_CHOICES = [
     ('Brazil','Brazil'),
 ]
 
+
 class User(AbstractUser):
     id = models.UUIDField(
         primary_key=True,
-        default=uuid.uuid4(),
+        default=uuid.uuid4,
         unique=True,
         editable=False,
         null=False, 
@@ -20,7 +22,7 @@ class User(AbstractUser):
 
     birth_date = models.DateField(
         'birth date',
-        null=False,
+        null=True,
         blank=False,
     )
 
