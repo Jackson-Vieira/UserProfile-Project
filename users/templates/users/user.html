@@ -1,70 +1,41 @@
+{% extends 'users/base.html' %}
 {% load bootstrap5 %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock head %}
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <nav class="container-fluid navbar navbar-dark bg-dark mb-5">
-        <div class="navbar-brand">
-            <a href="{% url 'users:index' %}" style="text-decoration: none; color: whitesmoke;">
-                <img src="{% static 'imgs/user.png' %}"  height="30" class="d-inline align-top" alt="">
-                User Profile
-            </a>
-            
+{% block content %} 
+<div class="container container-informations mt-5">
+    <article class="row">
+        <div class="col-4 d-flex flex-column  align-items-center">
+            <span class="img-perfil ">Perfil</span>
+            {% if user_info.perfil_photo %}
+                <img class="img-thumbnail rounded-circle" id="img-perfil" src="{{user_info.perfil_photo.url}}" alt="perfil photo" >
+            {% else %}
+                <img class="img-thumbnail rounded-circle" id="img-perfil" src="{% static 'imgs/sem-imagem-avatar.png' %}" alt="perfil photo" >
+            {% endif%}
         </div>
-        <div class="justify-content-end">
-        {% if user.is_authenticated %}
-            <span class="text-ligth">User: {{user.username}}</span>
-            <a href="{% url 'users:logout' %}" class="text-ligth">logout</a>
-        {% endif %}
-        </div>
-        
-    </nav>
-
-    <main class="container container-informations">
-        <article class="row">
-            <div class="col-4 d-flex flex-column  align-items-center">
-                <span class="img-perfil ">Perfil</span>
-                {% if user_info.perfil_photo %}
-                    <img class="img-thumbnail rounded-circle" id="img-perfil" src="{{user_info.perfil_photo.url}}" alt="" >
-                {% else %}
-                    <img class="img-thumbnail rounded-circle" id="img-perfil" src="{% static 'imgs/sem-imagem-avatar.png' %}" alt="" >
-                {% endif%}
-            </div>
-            <div class="col-8 personal-informations">
-                <div class="row">
-                    <div class="border-bottom border-top">
-                        <p id="info-header">Name: {{user_info.username}} </p>
-                    </div>
-                    <div class="border-bottom">
-                        <p id="info-header">ID: {{user_info.id}}</p>
-                    </div>
-                    <div class="border-bottom">
-                        <p id="info-header">Data de nascimento: {{user_info.birth_date}}</p>
-                    </div>
-                    <div class="border-bottom">
-                        <p id="info-header">País ou região: {{user_info.location}}</p>
-                    </div>
+        <div class="col-8 personal-informations">
+            <div class="row">
+                <div class="border-bottom border-top">
+                    <p id="info-header">Name: {{user_info.username}} </p>
+                </div>
+                <div class="border-bottom">
+                    <p id="info-header">ID: {{user_info.id}}</p>
+                </div>
+                <div class="border-bottom">
+                    <p id="info-header">Data de nascimento: {{user_info.birth_date}}</p>
+                </div>
+                <div class="border-bottom">
+                    <p id="info-header">País ou região: {{user_info.location}}</p>
                 </div>
             </div>
-        </article>
-    </main>
-    
-
-    <footer class="d-flex align-items-center justify-content-center">
-        <div>
-            made by @Jaquiso
         </div>
-    </footer>
+    </article>
+</div>
+{% endblock content %}
+    
 </body>
 </html>

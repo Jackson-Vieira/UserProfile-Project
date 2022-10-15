@@ -1,13 +1,9 @@
-{% extends 'users/base.html' %}
+<title>Sign in</title>
 
-{# Load the tag library #}
 {% load bootstrap5 %}
 
-{# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-
-
 
 {% block content %} 
 <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 70vh;">
@@ -22,6 +18,4 @@
         {% endbuttons %}
     </form>
 </div>
-
-
 {% endblock content %}
