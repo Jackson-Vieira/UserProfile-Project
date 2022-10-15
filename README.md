@@ -36,16 +36,16 @@ class User(AbstractUser):
 ```
 
 ### Tools used
-- Django
+- Django && DRF
 - Bootstrap5
-- HTML/CSS
+- HTML5/CSS3
 
-### Clone e run this project with
-
+### Clone e run this project 
 ```
 git clone https://github.com/Jackson-Vieira/UserProfile-Project
 cd UserProfile-Project
-pip install requirements.txt # or activate the virtualenv
+# Crie e ative um ambiente virtual
+pip install requirements.txt
 python3 manage.py migrate
 python3 manage.py runserver
 ```
