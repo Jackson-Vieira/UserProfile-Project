@@ -6,11 +6,9 @@ from django.http import HttpResponseRedirect
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.authtoken.models import Token
 
 from .forms import SignUpForm
 from .models import User
-from .serializers import UserSerializer
 
 def index(request):
     users = User.objects.all()
@@ -60,28 +58,3 @@ def register(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse("users:register"))
-
-# API VIEWS
-class UserViewSet(viewsets.ModelViewSet):
-    def create(self, request, *args, **kwargs):
-        user = request.user
-        if user.is_superuser:
-            return super().create(request, *args, **kwargs)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-        
-    def destroy(self, request, *args, **kwargs):
-        user = request.user
-        pk = self.kwargs.get('pk')
-        if (str(user.id) == pk):
-            return super().destroy(request, *args, **kwargs)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-        
-    def update(self, request, *args, **kwargs):
-        user = request.user
-        pk = self.kwargs.get('pk')
-        if (str(user.id) == pk):
-            return super().update(request, *args, **kwargs)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-        
-    queryset = User.objects.all()
-    serializer_class = UserSerializer

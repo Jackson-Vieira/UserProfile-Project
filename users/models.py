@@ -49,6 +49,5 @@ class User(AbstractUser):
         ordering = ['date_joined']
 
     def save(self, *args, **kwargs):
-        print("?")
         super().save(*args, **kwargs)
         Token.objects.get_or_create(user=self)

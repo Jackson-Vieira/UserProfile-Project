@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 from rest_framework.routers import SimpleRouter
 
-from users import views
+from users.api import views
 
 urlpatterns = [
     path('', include('users.urls')),
